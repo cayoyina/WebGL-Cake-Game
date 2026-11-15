@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Let them eat cake</title>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="800" height="600" style="border:2px solid"></canvas>
+    <script src="script.js" type="module"></script>
+
+    <div>Try eating by clicking this cake!</div>
+    <div>Careful, though! This is no ordinary cake...</div>
+    <div>... it will play tricks on you!</div>
+    <div>Let's see how long it takes for you to finish the cake</div>
+    <p id="valueXPos"></p>
+
+    <p id="valueYPos"></p>
+
+    <p id="valueZPos"></p>
+
+    <button id="clock" type="button" onclick="handleTimer(time)">Timer</button>
+
+    <audio id="nomSound">
+        <source src="/resources/audios/roblox_nom.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        let timerOn = false;
+        let time = 0;
+
+        const clock = document.getElementById("clock");
+
+        function handleTimer() {
+
+            if (!timerOn) {
+                return;
+            }
+
+            clock.innerText = time;
+            time++;
+
+            setTimeout(handleTimer, 1000);
+        }
+
+        clock.addEventListener("click", function () {
+
+            if (!timerOn) {
+
+                // Start
+                timerOn = true;
+                time = 0;
+                handleTimer();
+
+            } else {
+
+                // Stop und zurücksetzen
+                timerOn = false;
+                // time = 0;
+                // clock.innerText = "Timer";
+
+            }
+
+        });
+    </script>
+</body>
+
+</html>
